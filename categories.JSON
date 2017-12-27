@@ -1,0 +1,34 @@
+{
+    "calories": [
+        {
+            "unit": "kcal",
+            "name": "ham",
+            "bound": 10,
+            "image": "/img/calories/ham.jpg"
+        },
+        {
+            "unit": "kcal",
+            "name": "banana",
+            "bound": 100,
+            "image": "/img/calories/banana.jpg"
+        },
+        {
+            "unit": "kcal",
+            "name": "burger",
+            "bound": 500,
+            "image": "/img/calories/burger.jpg"
+        },
+        {
+            "unit": "kcal",
+            "name": "pizza",
+            "bound": 2500,
+            "image": "/img/calories/pizza.png"
+        },
+        {
+            "unit": "kcal",
+            "name": "lasagne",
+            "bound": 6500,
+            "image": "/img/calories/lasagne.png"
+        }
+    ]
+}

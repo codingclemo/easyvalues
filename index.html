@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>easy values - landing page</title>  
+    </head>
+    <body>
+        <header>
+            <div class="page-header-top">
+                <h1>easy values</h1>
+                <h2>make numbers understandable</h2>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h3>Selection Section</h3>
+                <form>
+                    <div class="form-field">
+                        <label>
+                            <span class="form-field-label"></span>
+                            <input type="text" name="input" id="input-field" placeholder="Enter a value (e.g. 1000km)" required>
+                        </label>
+                    </div>
+
+                    <div class="form-field">
+                        <label>
+                            <span class="form-field-label"></span>
+                            <button type="button" name="submit" id="button-submit">Make it easy!</button>
+                        </label>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <article class="result">
+                    <!-- <img src="https://www.fillmurray.com/200/300" alt="Fill Murry"> -->
+                    <div class="result-content">
+                    <h3>Results Section</h3>
+                    <p id="result-text"></p>
+                    <div class="result-more">Mehr lesen ...</div>
+                    </div>
+                  </article>
+                  <div id="output"></div>
+            </section>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="easyvalues.js"></script>
+    </body>
+</html>
