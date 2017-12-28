@@ -1,5 +1,9 @@
 $(document).ready(function() {
     $("button[name='submit']").click(getResults);
+
+    // zu testzwecken das JSOn auf der console ausgeben - es wird der inhalt vom JSON formatiert mit 4 zeichen einrückungen
+    // angezeigt
+    console.log("das geladene JSON File: ", JSON.stringify(categores, null, 4));
 });
 
 // enables submitting by pressing "return"   <---- DOES NOT WORK
