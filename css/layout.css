@@ -1,0 +1,18 @@
+/* Header */
+
+.page-header-top {
+    background-color: rgb(5, 68, 145);
+    padding: 1em;
+    text-align: center;
+  }
+  
+  .page-header-top * {
+    color: #fff;
+  }
+
+/* Main */
+main {
+  padding: 10px;
+  text-align: center;
+}
+  
