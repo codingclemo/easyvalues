@@ -1,11 +1,11 @@
-var myData = JSON.parse(data);
+// var myData = JSON.parse(data);
 
 $(document).ready(function() {
     $("button[name='submit']").click(getResults);
 
     // zu testzwecken das JSOn auf der console ausgeben - es wird der inhalt vom JSON formatiert mit 4 zeichen einrückungen
     // angezeigt
-    console.log("das geladene JSON File: ", JSON.stringify(categores, null, 4));
+    console.log("das geladene JSON File: ", JSON.stringify(myData, null, 4));
 });
 
 /*

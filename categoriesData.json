@@ -1,6 +1,6 @@
 // dem objekt bzw der variablen einen namen gebene, damit du es im JS ansprechen kannst
 
-var categories = {
+var myData = {
     "calories": [
         {
             "unit": "kcal",
