@@ -20,6 +20,7 @@ var result = {
     categoryElement: 0,
     unit: "",
     measure: "",
+    bound: 0,
     graphic: "",
     text: "",
     name: ""
@@ -88,6 +89,7 @@ function findCategory(){
     result.name = categoryData[i].name;
     result.multiplier = Math.round(result.value / categoryData[i].bound);
     result.graphic = categoryData[i].image;
+    result.bound = categoryData[i].bound;
 
     $("#result-headline").text(result.multiplier + "x " + result.name);
     //$("#result-image").html('<img src="' + result.graphic + '" width="100px" />');
@@ -101,13 +103,36 @@ function generateGraphic(){
     }
     
     console.log(imageCode);
-    $("result-image").html(imageCode);
+    $(".result-image").html(imageCode);
 }
+
+function pluralS(){
+    var s="";
+    if (result.multiplier > 1) {
+        s = "s"};
+    return s;
+}
+
+function createText(){
+    var categoryVerb = "contains";
+    // var pluralS = "";
+    // if (result.multiplier > 1) {pluralS = "s"};
+
+    var explanation;
+    explanation = "One " + result.name + " " + categoryVerb + " around " + result.bound + " " 
+                  + result.unit + ". ";
+    explanation = explanation + result.value + " " + result.unit + " equals the " + result.category 
+                  + " of roughly " + result.multiplier + " " + result.name + pluralS() + ".";
+
+    $('#result-text').text(explanation);
+}
+
 
 function getResults(){
     console.log("--get results--");
     getMeasure();
     findCategory();
     generateGraphic();
+    createText();
     //console.log(text($("input[name='input'").val()));
 }

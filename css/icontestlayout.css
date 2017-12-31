@@ -1,0 +1,87 @@
+:root
+{
+    --mainColor: lightslategrey;
+    --caloriesColor: lightcoral;
+    --crowdColor: lightsteelblue;
+    --distanceColor: lightgray;
+    --heightColor: lightgoldenrodyellow;
+    --speedColor: lightsalmon;
+    --scaleColor: lightseagreen;
+    --volumeColor: lightskyblue;
+    --timeColor: lightpink;
+}
+
+.icon-wrap
+{
+    text-align: center;
+    margin: 0 auto;  
+    padding-top: 100px; /*remove in final version*/
+}
+
+.icon
+{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 0px;
+    height: 20px;
+    width: 20px;
+    margin: 2px;
+    padding: 3px;
+    border-radius: 50%;
+    background-color: var(--mainColor);
+    z-index: 1;
+    position: relative;
+    transition: background 0.2s, color 0.2s;
+}
+
+.icon:last-child
+{
+    margin-right: 0px;
+}
+
+.icon:hover
+{
+    transition: transform 0.2s, opacity 0.2s;
+    transform: scale(1.1);
+}
+
+/* hover colors */
+
+#icon-calories:hover
+{
+    background-color: var(--caloriesColor);
+}
+
+#icon-crowd:hover
+{
+    background-color: var(--crowdColor);
+}
+
+#icon-distance:hover
+{
+    background-color: var(--distanceColor);
+}
+
+#icon-height:hover
+{
+    background-color: var(--heightColor);
+}
+#icon-speed:hover 
+{
+    background-color: var(--speedColor);
+}
+
+#icon-scale:hover 
+{
+    background-color: var(--scaleColor);
+}
+
+#icon-volume:hover 
+{
+    background-color: var(--volumeColor);
+}
+
+#icon-time:hover 
+{
+    background-color: var(--timeColor);
+}

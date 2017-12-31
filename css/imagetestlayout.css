@@ -1,0 +1,32 @@
+img
+{
+    width: 100%;
+    height: 100%;
+}
+
+.result-content
+{
+    border: 5px solid lightseagreen;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.result-image
+{
+    border: 5px solid lightslategray;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    
+    /* justify-items: center; */
+    /* height: 50%; */
+}
+
+.result-image-flex
+{
+    /* border: 5px solid lightgreen; */
+    background: lightgray;
+    align-self: stretch;
+    /* width:100%;
+    height: 100%; */
+}
