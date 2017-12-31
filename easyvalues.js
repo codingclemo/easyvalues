@@ -1,11 +1,9 @@
-// var myData = JSON.parse(data);
-
 $(document).ready(function() {
     $("button[name='submit']").click(getResults);
 
     // zu testzwecken das JSOn auf der console ausgeben - es wird der inhalt vom JSON formatiert mit 4 zeichen einrückungen
     // angezeigt
-    console.log("das geladene JSON File: ", JSON.stringify(myData, null, 4));
+    //console.log("das geladene JSON File: ", JSON.stringify(myData, null, 4));
 });
 
 /*
@@ -18,11 +16,16 @@ function testSubmit(){
 var result = {
     value: 0,
     multiplier: 1,
+    category: "",
+    categoryElement: 0,
     unit: "",
     measure: "",
     graphic: "",
-    text: ""
+    text: "",
+    name: ""
 }
+
+var categoryData;
 
 function getMeasure(){
     console.log("--get measure--");
@@ -46,6 +49,15 @@ function getMeasure(){
         case "kcal":
             console.log("calories");
             result.measure = "calories";
+            categoryData = myData.calories;
+            break;
+        case "t" || "kg":
+            console.log("weight");
+            if (result.unit == "t") { 
+                result.value = result.value * 1000;
+                result.unit = "kg";}
+            result.measure = "weight";
+            categoryData = myData.weight;
             break;
         case "min":
             console.log("time");
@@ -63,19 +75,39 @@ function getMeasure(){
 
 function findCategory(){
     console.log("--find category--");
-    console.log(result.measure, result.unit, result.value);
-    var calData = myData.calories;
-    for (var i = 0; i < calData.length; i++) {
-        if (calData[i].bound > result.value) {
-            createElement('h1', calData[i].name);
+    
+    //result.category = "calories"; //hardcoded for now
+
+    var i = 0;
+    for (i = categoryData.length-1; i >= 0; i--) {
+        if (categoryData[i].bound <= result.value) {
+            result.categoryElement = i;
             break;
         }
     }
+    result.name = categoryData[i].name;
+    result.multiplier = Math.round(result.value / categoryData[i].bound);
+    result.graphic = categoryData[i].image;
+
+    $("#result-headline").text(result.multiplier + "x " + result.name);
+    //$("#result-image").html('<img src="' + result.graphic + '" width="100px" />');
+}
+
+function generateGraphic(){
+    var categoryElement = categoryData[result.categoryElement].image;
+    var imageCode = "";
+    for ( var i = 0; i < result.multiplier; i++){
+        imageCode = imageCode + '<div class="result-image-flex"><img src="' + result.graphic + '" /></div>'; //width="100px"
+    }
+    
+    console.log(imageCode);
+    $("result-image").html(imageCode);
 }
 
 function getResults(){
     console.log("--get results--");
     getMeasure();
     findCategory();
+    generateGraphic();
     //console.log(text($("input[name='input'").val()));
 }

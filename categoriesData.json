@@ -4,33 +4,78 @@ var myData = {
     "calories": [
         {
             "unit": "kcal",
-            "name": "ham",
+            "name": "slice of ham",
             "bound": 10,
-            "image": "/img/calories/ham.jpg"
+            "image": "img/calories/ham.jpg"
         },
         {
             "unit": "kcal",
             "name": "banana",
             "bound": 100,
-            "image": "/img/calories/banana.jpg"
+            "image": "img/calories/banana.jpg"
         },
         {
             "unit": "kcal",
             "name": "burger",
             "bound": 500,
-            "image": "/img/calories/burger.jpg"
+            "image": "img/calories/burger.jpg"
         },
         {
             "unit": "kcal",
             "name": "pizza",
             "bound": 2500,
-            "image": "/img/calories/pizza.png"
+            "image": "img/calories/pizza.png"
         },
         {
             "unit": "kcal",
-            "name": "lasagne",
+            "name": "lasagna",
             "bound": 6500,
-            "image": "/img/calories/lasagne.png"
+            "image": "img/calories/lasagna.jpg"
+        }
+    ],
+
+    "weight": [
+        {
+            "unit": "kg",
+            "name": "rabbit",
+            "bound": 1,
+            "image": "img/weight/rabbit.png"
+        },
+        {
+            "unit": "kg",
+            "name": "cat",
+            "bound": 4,
+            "image": "img/weight/cat.jpg"
+        },
+        {
+            "unit": "kg",
+            "name": "bulldog",
+            "bound": 20,
+            "image": "img/weight/bulldog.jpg"
+        },
+        {
+            "unit": "kg",
+            "name": "goat",
+            "bound": 120,
+            "image": "img/weight/goat.jpg"
+        },
+        {
+            "unit": "kg",
+            "name": "horse",
+            "bound": 1000,
+            "image": "img/weight/horse.png"
+        },
+        {
+            "unit": "kg",
+            "name": "elephant",
+            "bound": 6000,
+            "image": "img/weight/elephant.jpg"
+        },
+        {
+            "unit": "kg",
+            "name": "humpback whale",
+            "bound": 30000,
+            "image": "img/weight/whale.jpg"
         }
     ]
 };
