@@ -6,6 +6,12 @@ form
   padding-bottom: 20px;
 }
 
+#input-field
+{
+    width: 300px;
+    height: 15px;
+    margin-bottom: 10px;
+}
 
 
 /* Icons */

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>easy values - landing page</title>
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/formlayout.css">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
+        
+        <style>
+            #map{
+                height: 400px;
+                width: 100%;
+            }
+        </style> 
+    </head>
+    <body>
+        <main>
+            <div id="map"></div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="easyvalues.js"></script>
+        <script src="distanceMap.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mCrYcvb6SLC145MDmAROKnOIFYnec8E&callback=initMap&libraries=geometry,places"
+        async defer></script>
+
+
+        <!-- das JSON laden, wie ein JS File -> man sollte es wohl mittels XHR laden, aber dann braucht man einen
+            Server (NodeJS ;-) ) -->
+        <script src="categoriesData.json"></script>
+        
+    </body>
+</html>

@@ -48,12 +48,13 @@ img
 .result-image
 {
     /* border: 5px solid lightslategray; */
-
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     justify-items: center;
     grid-gap: 0px;
-    /* height: 50%; */
+    height: 50%; */
+
+    width: 100%;
 }
 
 .result-image-flex

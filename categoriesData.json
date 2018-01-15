@@ -4,9 +4,15 @@ var myData = {
     "calories": [
         {
             "unit": "kcal",
-            "name": "slice of ham",
-            "bound": 10,
-            "image": "img/calories/ham.jpg"
+            "name": "cherry tomato (half)",
+            "bound": 1,
+            "image": "img/calories/cherrytomatohalf.png"
+        },
+        {
+            "unit": "kcal",
+            "name": "cherry tomato",
+            "bound": 2,
+            "image": "img/calories/cherrytomato.png"
         },
         {
             "unit": "kcal",
