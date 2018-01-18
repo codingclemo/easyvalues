@@ -2,7 +2,7 @@ $(document).ready(function() {
     // $("button[name='submit']").click(getResults);
     $("#input-field").keypress(function(e){
         if (e.which == 13){
-            $("#input-field").setAttribute('style', 'display:none'); //hide keyboard on mobile devices does not work
+            // $("#input-field").setAttribute('style', 'display:none'); //hide keyboard on mobile devices does not work
             getResults();
             return false;
         }

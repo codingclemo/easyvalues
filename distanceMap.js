@@ -6,7 +6,7 @@ function initMap(userInput) {
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
 
-    userLocation();
+    //userLocation();
     // map options
     var options = {
         zoom: 8,
