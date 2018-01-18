@@ -1,11 +1,12 @@
 var map;
 var startLocation = {lat: 48.2205994, lng: 16.2396333}; //default is vienna
 
-function initMap() {
+
+function initMap(userInput) {
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
 
-    // userLocation();
+    userLocation();
     // map options
     var options = {
         zoom: 8,
@@ -15,7 +16,10 @@ function initMap() {
     // new map
     map = new google.maps.Map(document.getElementById('map'), options);
     
-    calcRoute(directionsService, directionsDisplay, 2000);
+    // user distance input
+    var userDistance = userInput;
+
+    calcRoute(directionsService, directionsDisplay, userDistance);
     directionsDisplay.setMap(map);
 }
 
@@ -43,48 +47,16 @@ function userLocation(){
 }
 
 function setTargetLocation(start, distance){
-    // var newLat = ((distance * 0.8) / 110.574);
-    // var newLng = start.lng;
-    // var dest = {
-    //     lat: newLat,
-    //     lng: newLng
-    // }
+
     var startPoint = new google.maps.LatLng(start.lat, start.lng);
-    // var endPoint = new google.maps.LatLng(start.lat, start.lng);
-    var heading = 270;
+    var heading = 45;
     var endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
 
-    // var growingDistance = google.maps.geometry.spherical.computeDistanceBetween(startPoint, endPoint);
-    // console.log("Distance in meters: " + growingDistance);
 
-    var geocoder = new google.maps.Geocoder();
-    var isCity = true;
-
-    while (isCity || heading > 14) {
-        endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
-        geocoder.geocode( { 'location': endPoint}, function(results, status) {
-            if (status == 'OK') {
-                isCity = true;
-              console.log("First try: " + results[0].formatted_address);
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-                // alert('Geocode was not successful for the following reason: ' + status);
-                heading -= 15;
-                isCity = false;
-            }
-          });
-    }
-
-
-    //   while (status != 'OK' || heading > 14) {
-    //     heading -= 15;
-    //     endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
-    // }
-
-    //   if (heading > 0) {
-    //     heading -= 15;       
-    //     endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
-
+    // return the name
+    var startName = returnCityName(startPoint);
+    console.log("Start point is:" + startName);
+    console.log("End point is:" + returnCityName(endPoint));
 
       var dest = {
           lat: endPoint.lat(),  //endPoint.latitude,
@@ -98,11 +70,25 @@ function storePosition(position){
     startLocation.lat = position.coords.latitude;
     startLocation.lng = position.coords.longitude;
     // center map
-    map.setCenter(startLocation);
-    console.log("never shown.");
-    // add marker
-    // var marker = new google.maps.Marker({
-    //     position: startLocation,
-    //     map: map
-    // })
+    //map.setCenter(startLocation);
+}
+
+function returnCityName(location){
+    var cityName;
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'location': location}, function(results, status) {
+        if (status == 'OK') {
+            // console.log(results[0].formatted_address);
+            var cityName = results[0].formatted_address;
+            console.log(cityName);
+            // cityName =  JSON.stringify(results[0].formatted_address);
+            // cityName = jQuery(results[0].formatted_address).text();
+            // cityName = results[0].formatted_address;
+            
+        } else {
+            console.log('1. Geocode was not successful for the following reason: ' + status);
+        }
+    });
+    
+    return cityName;
 }

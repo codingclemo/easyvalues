@@ -2,7 +2,7 @@ $(document).ready(function() {
     // $("button[name='submit']").click(getResults);
     $("#input-field").keypress(function(e){
         if (e.which == 13){
-            console.log("whaddup");
+            $("#input-field").setAttribute('style', 'display:none'); //hide keyboard on mobile devices does not work
             getResults();
             return false;
         }
@@ -54,6 +54,8 @@ function getMeasure(){
     switch (result.unit) {
         case "km":
             console.log("distance");
+            result.measure = "distance";
+            categoryData = myData.distance;
             break;
         case "kcal":
             console.log("calories");
@@ -198,10 +200,16 @@ function getResults(){
     console.log("--get results--");
     getMeasure();
     findCategory();
-    draw();
+    console.log("result.measure: " + result.measure);
+    if(result.measure == "distance") {
+        $("#result-canvas").remove();
+        $(".result-image").html('<div id="map"></div>');
+        initMap(result.value);
+    } else {
+        draw();
+    }
     // generateGraphic();
     createText();
-    //console.log(text($("input[name='input'").val()));
 }
 
 function setListeners(){
@@ -258,3 +266,11 @@ function getUnit(category){
             break;
     }
 }
+
+
+// keep this for making the results-canvas responsive:
+// 
+// $( window ).resize(function() {
+//     width = $('.result-image').width(); 
+//     $('#result-canvas').width(width);
+// });

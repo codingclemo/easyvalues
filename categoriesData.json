@@ -83,5 +83,14 @@ var myData = {
             "bound": 30000,
             "image": "img/weight/whale.jpg"
         }
+    ],
+
+    "distance": [
+        {
+            "unit": "km",
+            "name": "distance between A and B",
+            "bound": 1,
+            "image": ""
+        }
     ]
 };
