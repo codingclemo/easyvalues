@@ -74,8 +74,15 @@ function getMeasure(){
             result.measure = "weight";
             categoryData = myData.weight;
             break;
+        case "l":
+            console.log("volume");
+            result.measure = "volume";
+            categoryData = myData.volume;
+            break;
         case "min":
-            console.log("time");
+            console.log("duration");
+            result.measure = "duration";
+            categoryData = myData.duration;
             break;
         case "people":
             console.log("crowd");
@@ -203,7 +210,7 @@ function getResults(){
     console.log("result.measure: " + result.measure);
     if(result.measure == "distance") {
         $("#result-canvas").remove();
-        $(".result-image").html('<div id="map"></div>');
+        // $(".result-image").html('<div id="map"></div>');
         initMap(result.value);
     } else {
         draw();
@@ -258,7 +265,7 @@ function getUnit(category){
         case "scale":
             return "kg";
             break;
-        case "time":
+        case "duration":
             return "min";
             break;
         case "volume":

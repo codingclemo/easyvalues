@@ -84,7 +84,7 @@ form
     background-color: var(--volumeColor);
 }
 
-#icon-time:hover 
+#icon-duration:hover 
 {
-    background-color: var(--timeColor);
+    background-color: var(--durationColor);
 }

@@ -74,13 +74,14 @@ function storePosition(position){
 }
 
 function returnCityName(location){
-    var cityName;
+    var cityName = "";
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'location': location}, function(results, status) {
         if (status == 'OK') {
             // console.log(results[0].formatted_address);
-            var cityName = results[0].formatted_address;
+            var cityName += results[0].formatted_address;
             console.log(cityName);
+            $("#result-headline").text(cityName);
             // cityName =  JSON.stringify(results[0].formatted_address);
             // cityName = jQuery(results[0].formatted_address).text();
             // cityName = results[0].formatted_address;

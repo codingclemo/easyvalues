@@ -92,5 +92,57 @@ var myData = {
             "bound": 1,
             "image": ""
         }
+    ],
+    "duration": [
+        {
+            "unit": "min",
+            "name": "episode of the Simpsons",
+            "bound": 20,
+            "image": "img/duration/simpsons.jpg"
+        },
+        {
+            "unit": "min",
+            "name": "one season of Game of Thrones",
+            "bound": 500,
+            "image": "img/duration/gameOfThrones.jpg"
+        },
+        {
+            "unit": "min",
+            "name": "entire series of Breaking Bad",
+            "bound": 3030,
+            "image": "img/duration/breakingBad.jpg"
+        }
+    ],
+    "volume": [
+        {
+            "unit": "l",
+            "name": "glass",
+            "bound": 0.2,
+            "image": "img/volume/glass.jpg"
+        },
+        {
+            "unit": "l",
+            "name": "cooking pot",
+            "bound": 6,
+            "image": "img/volume/cookingpot.jpg"
+        },
+        {
+            "unit": "l",
+            "name": "bathtub",
+            "bound": 195,
+            "image": "img/volume/bathtub.jpg"
+        },
+        {
+            "unit": "l",
+            "name": "tank truck",
+            "bound": 25000,
+            "image": "img/volume/tanktruck.jpg"
+        },
+        {
+            "unit": "l",
+            "name": "pool",
+            "bound": 1000000,
+            "image": "img/volume/pool.jpg"
+        }
     ]
 };
