@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>easy values - landing page</title>
         <link rel="stylesheet" href="css/layout.css">
         <link rel="stylesheet" href="css/formlayout.css">
-        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">  
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">  
     </head>
     <body>
         <header>
@@ -16,8 +18,6 @@
         <main>
             <form id="formBox" target="#here" method="get">
                 <input name="input" id="input-field" type="text" /><br />
-                <!-- <button type="button" name="submit" id="button-submit">Make it easy!</button> -->
-                <!--<input type="submit" style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true"/> -->
                 <div class="icon-wrap">
                         <img class="icon" id="icon-calories" src="icons/calories.svg" alt="calories" title="calories"></img>
                         <img class="icon" id="icon-crowd" src="icons/crowd.svg" alt="crowd" title="crowd"></img>
@@ -31,9 +31,7 @@
             </form>
             <div class="result-content">
                 <div class="result-image"></div>
-                <!-- <div id="map"></div> -->
-                <!-- <canvas id="result-canvas" width="300" height="150"></canvas> -->
-                <h3 id="result-headline">Results Section</h3>
+                <h3 id="result-headline"></h3>
                 <p id="result-text"></p>
             </div>
 
@@ -43,9 +41,6 @@
         <script src="distanceMap.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mCrYcvb6SLC145MDmAROKnOIFYnec8E&libraries=geometry,places"
         async defer></script>
-        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mCrYcvb6SLC145MDmAROKnOIFYnec8E&callback=initMap&libraries=geometry,places"
-        async defer></script> -->
-
 
         <!-- das JSON laden, wie ein JS File -> man sollte es wohl mittels XHR laden, aber dann braucht man einen
             Server (NodeJS ;-) ) -->

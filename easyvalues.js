@@ -127,8 +127,12 @@ function findCategory(){
 // }
 
 function draw(){
-    var imageWidth = 500;
-    var imageHeigth = 300;
+    var imageWidth = 600;
+    var imageHeigth = 350;
+
+    // var imageWidth = $(".result-image").css("width");  //500;
+    // var imageHeigth = $(".result-image").css("height"); //300;
+    console.log("imagewidth: " + imageWidth);
 
     var imageCode = '<canvas id="result-canvas" width="'+imageWidth+'" height="'+imageHeigth+'"></canvas>';
     $(".result-image").html(imageCode);
@@ -142,12 +146,12 @@ function draw(){
         rowImages = rowImages + 1;
     }
 
-    var newWidth;
     var newHeight;
+    var newWidth;
     var img = new Image();
     img.onload = function() {   
-        var originalWidth = img.width;
         var originalHeight = img.height;
+        var originalWidth = img.width;
         var aspectRatio = originalWidth / originalHeight;
 
         newHeight = originalHeight;
@@ -162,7 +166,7 @@ function draw(){
         var centerSpace = (imageWidth - rowImages*newWidth) / 2;
         var centerHeight = (imageHeigth - colImages*newHeight) / 2;
         var isDraw = true;
-
+        
         for (var i = 0; i < colImages; i++) {
             for (var j = 0; j < rowImages; j++) {
                 if (i+1 == colImages){
@@ -175,7 +179,7 @@ function draw(){
         }
     };
     img.src = categoryData[result.categoryElement].image;
-    
+    console.log(img.src);
     // $('#result-canvas').height = colImages*newHeight; //does not work !!!!! why
     // $('#result-canvas').height(colImages * newHeight); 
 }
@@ -200,17 +204,33 @@ function createText(){
                   + " of roughly " + result.multiplier + " " + result.name + pluralS() + ".";
 
     $('#result-text').text(explanation);
+
+    //change background color
+    var colorName = "--" + result.measure + "Color";
+    console.log(colorName);
+
+    $(".result-content").css({"background-color" : "lightseagreen"});
+    $(".result-content").css({"color" : "white"});
+    
 }
 
 
 function getResults(){
+    //create div-structure
+    // $("#formBox").insertAfter('<div class="result-content">');
+    // $(".result-content").insertAfter('<div class="result-image"></div>');
+    // $(".result-image").insert('<h3 id="result-headline"></h3>');
+    //         <p id="result-text"></p></div>');
+    
+
+
     console.log("--get results--");
     getMeasure();
     findCategory();
     console.log("result.measure: " + result.measure);
     if(result.measure == "distance") {
         $("#result-canvas").remove();
-        // $(".result-image").html('<div id="map"></div>');
+        $(".result-image").html('<div id="map"></div>');
         initMap(result.value);
     } else {
         draw();

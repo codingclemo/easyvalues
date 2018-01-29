@@ -88,3 +88,47 @@ form
 {
     background-color: var(--durationColor);
 }
+
+
+@media (max-width: 800px) {
+    form
+    {
+      background-color: lightcyan;
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+    
+    #input-field
+    {
+        width: 90%;
+        height: 30px;
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    
+    
+    /* Icons */
+    .icon-wrap
+    {
+        text-align: center;
+        margin: 0 auto;  
+    }
+    
+    .icon
+    {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0px;
+        height: 20px;
+        width: 20px;
+        margin: 2px;
+        padding: 3px;
+        border-radius: 50%;
+        background-color: var(--iconColor);
+        z-index: 1;
+        position: relative;
+        transition: background 0.2s, color 0.2s;
+    }
+    
+
+}
