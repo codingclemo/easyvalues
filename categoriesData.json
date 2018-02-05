@@ -96,6 +96,12 @@ var myData = {
     "duration": [
         {
             "unit": "min",
+            "name": "PLACEHOLDER",
+            "bound": 1,
+            "image": "img/duration/simpsons.jpg"
+        },
+        {
+            "unit": "min",
             "name": "episode of the Simpsons",
             "bound": 20,
             "image": "img/duration/simpsons.jpg"

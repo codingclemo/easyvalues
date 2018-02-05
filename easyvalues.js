@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("#input-field").focus();
     // $("button[name='submit']").click(getResults);
     $("#input-field").keypress(function(e){
         if (e.which == 13){
@@ -7,7 +8,7 @@ $(document).ready(function() {
             return false;
         }
     });
-    $("#input-field").focus();
+
     setListeners();
     // zu testzwecken das JSOn auf der console ausgeben - es wird der inhalt vom JSON formatiert mit 4 zeichen einrückungen
     // angezeigt
@@ -198,31 +199,52 @@ function createText(){
     // if (result.multiplier > 1) {pluralS = "s"};
 
     var explanation;
-    explanation = "One " + result.name + " " + categoryVerb + " around " + result.bound + " " 
-                  + result.unit + ". ";
-    explanation = explanation + result.value + " " + result.unit + " equals the " + result.category 
-                  + " of roughly " + result.multiplier + " " + result.name + pluralS() + ".";
+    explanation = result.value + " " + result.unit + " equals the amount" + 
+                 " of roughly " + result.multiplier + " " + result.name + pluralS() + ".";
+
+    explanation += " One " + result.name + " " + categoryVerb + " around " + result.bound + " " 
+                 + result.unit + ". \r \n ";
 
     $('#result-text').text(explanation);
 
     //change background color
-    var colorName = "--" + result.measure + "Color";
-    console.log(colorName);
-
-    $(".result-content").css({"background-color" : "lightseagreen"});
+    $(".result-content").css("background-color" , "lightseagreen");
     $(".result-content").css({"color" : "white"});
-    
+}
+
+function addIcon(){
+
+    // remove object if on exists
+    if ($('#symbol').length == 0) {
+        var object = '<object id="symbol" data="icons/' + result.measure + '.svg" width="20" height="20" stroke="white"></object>';
+        $(".result-content").append(object);
+    }
+
+    // change color of the symbol to white
+    // var svg = document.getElementById("symbol");
+    // var svgDoc = svg.contentDocument;
+    // var path = svgDoc.getElementById("sym"); // the path of every icon svg needs to have this id
+    // if (path.length != 0) { console.log("whaaaaaaaaaaaaaaaaaaat"); }
+    // path.setAttributeNS(null, "stroke", "white");
 }
 
 
 function getResults(){
-    //create div-structure
-    // $("#formBox").insertAfter('<div class="result-content">');
-    // $(".result-content").insertAfter('<div class="result-image"></div>');
-    // $(".result-image").insert('<h3 id="result-headline"></h3>');
-    //         <p id="result-text"></p></div>');
     
+    // hide the keyboard on mobile devices
+    // window.hideVirtualKeyboard();   //does not work as planned
 
+    // create div-structure
+    if ($('.result-content').length == 0) {
+        $("main").append('<div class="result-content">');
+        $(".result-content").append('<div class="result-image"></div>');
+        $(".result-content").append('<h3 id="result-headline"></h3>');
+        $(".result-content").append('<p id="result-text"></p></div>');
+    }
+
+    $("#result-text").focus();
+        
+    // $('.result-content').focus();
 
     console.log("--get results--");
     getMeasure();
@@ -237,6 +259,7 @@ function getResults(){
     }
     // generateGraphic();
     createText();
+    addIcon();
 }
 
 function setListeners(){
