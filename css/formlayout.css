@@ -1,7 +1,7 @@
 /* Form */
 form
 {
-  background-color: lightcyan;
+  /* background-color: lightcyan; */
   padding-top: 30px;
   padding-bottom: 20px;
 }
@@ -9,7 +9,8 @@ form
 #input-field
 {
     width: 300px;
-    height: 15px;
+    height: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
@@ -18,7 +19,7 @@ form
 .icon-wrap
 {
     text-align: center;
-    margin: 0 auto;  
+    margin: 0 auto;
 }
 
 .icon
@@ -45,11 +46,10 @@ form
 .icon:hover
 {
     transition: transform 0.2s, opacity 0.2s;
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* hover colors */
-
 #icon-calories:hover
 {
     background-color: var(--caloriesColor);
@@ -69,22 +69,22 @@ form
 {
     background-color: var(--heightColor);
 }
-#icon-speed:hover 
+#icon-speed:hover
 {
     background-color: var(--speedColor);
 }
 
-#icon-scale:hover 
+#icon-scale:hover
 {
     background-color: var(--scaleColor);
 }
 
-#icon-volume:hover 
+#icon-volume:hover
 {
     background-color: var(--volumeColor);
 }
 
-#icon-duration:hover 
+#icon-duration:hover
 {
     background-color: var(--durationColor);
 }
@@ -93,34 +93,34 @@ form
 @media (max-width: 800px) {
     form
     {
-      background-color: lightcyan;
+      /* background-color: lightcyan; */
       padding-top: 30px;
       padding-bottom: 20px;
     }
-    
+
     #input-field
     {
-        width: 90%;
-        height: 30px;
-        font-size: 26px;
+        width: 60%;
+        height: 28px;
+        font-size: 24px;
         margin-bottom: 15px;
     }
-    
-    
+
+
     /* Icons */
     .icon-wrap
     {
         text-align: center;
-        margin: 0 auto;  
+        margin: 0 auto;
     }
-    
+
     .icon
     {
         display: inline-block;
         cursor: pointer;
         font-size: 0px;
-        height: 20px;
-        width: 20px;
+        height: 30px;
+        width: 30px;
         margin: 2px;
         padding: 3px;
         border-radius: 50%;
@@ -129,6 +129,6 @@ form
         position: relative;
         transition: background 0.2s, color 0.2s;
     }
-    
+
 
 }
