@@ -15,13 +15,7 @@ $(document).ready(function() {
     //console.log("das geladene JSON File: ", JSON.stringify(myData, null, 4));
 });
 
-/*
-document.getElementById('formBox').addEventListener('submit', getResults);
 
-function testSubmit(){
-    console.log("yup, working.");
-}
-*/
 var result = {
     value: 0,
     multiplier: 1,
@@ -99,8 +93,6 @@ function getMeasure(){
 function findCategory(){
     console.log("--find category--");
     
-    //result.category = "calories"; //hardcoded for now
-
     var i = 0;
     for (i = categoryData.length-1; i >= 0; i--) {
         if (categoryData[i].bound <= result.value) {
@@ -116,6 +108,7 @@ function findCategory(){
     $("#result-headline").text(result.multiplier + "x " + result.name);
 }
 
+// Old code of how I wasted hours trying to use grid-layout for displaying multiple images
 // function generateGraphic(){
 //     var categoryElement = categoryData[result.categoryElement].image;
 //     var imageCode = "";
@@ -131,8 +124,6 @@ function draw(){
     var imageWidth = 600;
     var imageHeigth = 350;
 
-    // var imageWidth = $(".result-image").css("width");  //500;
-    // var imageHeigth = $(".result-image").css("height"); //300;
     console.log("imagewidth: " + imageWidth);
 
     var imageCode = '<canvas id="result-canvas" width="'+imageWidth+'" height="'+imageHeigth+'"></canvas>';
@@ -233,7 +224,10 @@ function getResults(){
     
     // hide the keyboard on mobile devices
     // window.hideVirtualKeyboard();   //does not work as planned
-
+    setTimeout(_ => {
+        window.hideVirtualKeyboard()
+      }, 250);
+    
     // create div-structure
     if ($('.result-content').length == 0) {
         $("main").append('<div class="result-content">');
@@ -257,7 +251,7 @@ function getResults(){
     } else {
         draw();
     }
-    // generateGraphic();
+    // generateGraphic();  //former grid-layout code
     createText();
     addIcon();
 }
@@ -316,11 +310,3 @@ function getUnit(category){
             break;
     }
 }
-
-
-// keep this for making the results-canvas responsive:
-// 
-// $( window ).resize(function() {
-//     width = $('.result-image').width(); 
-//     $('#result-canvas').width(width);
-// });
