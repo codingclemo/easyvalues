@@ -15,7 +15,7 @@ function initMap(userInput) {
 
     // new map
     map = new google.maps.Map(document.getElementById('map'), options);
-    
+
     // user distance input
     var userDistance = userInput;
 
@@ -82,14 +82,16 @@ function returnCityName(location){
             // var cityName += results[0].formatted_address;
             console.log(cityName);
             $("#result-headline").text(cityName);
+
             // cityName =  JSON.stringify(results[0].formatted_address);
             // cityName = jQuery(results[0].formatted_address).text();
             // cityName = results[0].formatted_address;
-            
+            if($("#result-headline").text == "")
+                $("#result-headline").text = "Distance between the points on the map";
         } else {
             console.log('1. Geocode was not successful for the following reason: ' + status);
         }
     });
-    
+
     return cityName;
 }

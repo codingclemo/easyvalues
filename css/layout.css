@@ -173,6 +173,7 @@ form
     position: relative;
     transition: background 0.2s, color 0.2s;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    opacity: 0.65;
 }
 
 .icon:last-child
@@ -185,6 +186,7 @@ form
     transition: transform 0.2s;
     transform: scale(1.2);
     box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    opacity: 0.8;
 }
 
 /* hover colors */

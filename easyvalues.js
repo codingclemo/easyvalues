@@ -1,9 +1,7 @@
 $(document).ready(function() {
     $("#input-field").focus();
-    // $("button[name='submit']").click(getResults);
     $("#input-field").keypress(function(e){
         if (e.which == 13){
-            // $("#input-field").setAttribute('style', 'display:none'); //hide keyboard on mobile devices does not work
             getResults();
             return false;
         }
@@ -17,7 +15,7 @@ $(document).ready(function() {
 
 
 var result = {
-    value: 0,
+    value: 1,
     multiplier: 1,
     category: "",
     categoryElement: 0,
@@ -40,25 +38,33 @@ function getMeasure(){
     console.log(inputString);
 
     result.value = inputString.replace(/\D/g,'');
+    if (result.value.length == 0)
+        result.value = 1;
     console.log(result.value);
 
     result.unit = inputString.replace(/[0-9, ]/g,'');
+    if (result.unit.length == 0)
+        result.unit = "kcal";
     console.log(result.unit);
 
 
 
     switch (result.unit) {
-        case "km":
-            console.log("distance");
-            result.measure = "distance";
-            result.verb = "XXXXXXX";
-            categoryData = myData.distance;
-            break;
         case "kcal":
             console.log("calories");
             result.measure = "calories";
             result.verb = "contains";
             categoryData = myData.calories;
+            break;
+        case "people":
+            console.log("crowd");
+            result.measure = "people"
+            categoryData = myData.people;
+            break;
+        case "km":
+            console.log("distance");
+            result.measure = "distance";
+            categoryData = myData.distance;
             break;
         case "kg":
             console.log("weight");
@@ -86,15 +92,21 @@ function getMeasure(){
             result.verb = "lasts";
             categoryData = myData.duration;
             break;
-        case "people":
-            console.log("crowd");
-            break;
         default:
-            console.log("Please enter a valid number including measuring unit");
+            alert("Please enter a valid number including measuring unit:"+
+                    "\n\t" + "kcal\t\t..for calories" +
+                    "\n\t" + "people\t..for crowd*" +
+                    "\n\t" + "km\t\t..for distance" +
+                    "\n\t" + "m\t\t..for height*" +
+                    "\n\t" + "km/h\t..for speed*" +
+                    "\n\t" + "kg or t\t..for weight" +
+                    "\n\t" + "min\t\t..for duration" +
+                    "\n\t" + "l\t\t..for volume"+
+                    "\n"+"\n" + "* not yet implemented");
+            console.log("default");
+            return false;
             break;
     }
-
-    $('#result-text').text(result.value + " " + result.unit);
 }
 
 function findCategory(){
@@ -111,8 +123,6 @@ function findCategory(){
     result.multiplier = Math.round(result.value / categoryData[i].bound);
     result.graphic = categoryData[i].image;
     result.bound = categoryData[i].bound;
-
-    // $("#result-headline").text(result.multiplier + "x " + result.name);
 }
 
 // Old code of how I wasted hours trying to use grid-layout for displaying multiple images
@@ -218,15 +228,20 @@ function createText(){
     var textUnit = addCommas(result.unit);
 
     //create headline
-    $("#result-headline").text(textMultiplier + "x " + result.name + pluralS());
+    if(result.measure != "distance")
+        $("#result-headline").text(textMultiplier + "x " + result.name + pluralS());
 
     //create text
     var explanation;
-    explanation = textValue + " " + textUnit + " equals the amount" +
-                 " of roughly " + result.multiplier + " " + result.name + pluralS() + ". ";
 
-    explanation += " One " + result.name + " " + result.verb + " around " + result.bound + " "
-                 + textUnit + ". \r \n ";
+    if (result.measure == "distance") {
+        explanation = textValue + " " + textUnit + " equals the " + result.name + ". ";
+    } else {
+        explanation = textValue + " " + textUnit + " equals the amount" +
+                     " of roughly " + result.multiplier + " " + result.name + pluralS() + ". ";
+        explanation += " One " + result.name + " " + result.verb + " around " + result.bound + " "
+                    + textUnit + ". \r \n ";
+    }
 
     $('#result-text').text(explanation);
 
@@ -283,6 +298,7 @@ function getResults(){
     getMeasure();
     findCategory();
     console.log("result.measure: " + result.measure);
+
     if(result.measure == "distance") {
         $("#result-canvas").remove();
         $(".result-image").html('<div id="map"></div>');
@@ -345,6 +361,9 @@ function getUnit(category){
             break;
         case "volume":
             return "l";
+            break;
+        default:
+            return "kcal";
             break;
     }
 }

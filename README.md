@@ -1,6 +1,16 @@
 # easyvalues
 Website to translate measuring units into values that are easy to understand.
 
+# WDP Projekt von Kozmich Clemens (S1610307023)
+
+* Projekt-Name: easyvalues
+* Projekt-Typ: Website/Webapp
+* Gruppenprojekt: Nein
+* Externe JS/CSS Bibliotheken: jQuery, maps.googleapis, (hide-virtual-keyboard.js)
+* Zeitaufwand (h): 50h+
+
+
+
 Anforderungen:
 * bis zu acht unterschiedliche Messgrößen können vom User eingegeben werden (Distanz, Kalorien, Höhenmeter, Anzahl an Personen, Gewicht, Volumen, Zeit und Geschwindigkeit)
 * per Zufallsgenerator werden acht Zufallszahlen eingegeben // fiel redesign zum Opfer

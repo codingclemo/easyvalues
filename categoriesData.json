@@ -96,9 +96,9 @@ var myData = {
     "duration": [
         {
             "unit": "min",
-            "name": "PLACEHOLDER",
+            "name": "60 seconds",
             "bound": 1,
-            "image": "img/duration/simpsons.jpg"
+            "image": "img/duration/stopwatch.png"
         },
         {
             "unit": "min",
