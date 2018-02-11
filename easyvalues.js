@@ -26,6 +26,7 @@ var result = {
     bound: 0,
     graphic: "",
     text: "",
+    verb: "",
     name: ""
 }
 
@@ -44,22 +45,25 @@ function getMeasure(){
     result.unit = inputString.replace(/[0-9, ]/g,'');
     console.log(result.unit);
 
-    
+
 
     switch (result.unit) {
         case "km":
             console.log("distance");
             result.measure = "distance";
+            result.verb = "XXXXXXX";
             categoryData = myData.distance;
             break;
         case "kcal":
             console.log("calories");
             result.measure = "calories";
+            result.verb = "contains";
             categoryData = myData.calories;
             break;
         case "kg":
             console.log("weight");
             result.measure = "weight";
+            result.verb = "weighs";
             categoryData = myData.weight;
             break;
         case "t":
@@ -67,16 +71,19 @@ function getMeasure(){
             result.value = result.value * 1000;
             result.unit = "kg";
             result.measure = "weight";
+            result.verb = "weighs";
             categoryData = myData.weight;
             break;
         case "l":
             console.log("volume");
             result.measure = "volume";
+            result.verb = "fits";
             categoryData = myData.volume;
             break;
         case "min":
             console.log("duration");
             result.measure = "duration";
+            result.verb = "lasts";
             categoryData = myData.duration;
             break;
         case "people":
@@ -92,7 +99,7 @@ function getMeasure(){
 
 function findCategory(){
     console.log("--find category--");
-    
+
     var i = 0;
     for (i = categoryData.length-1; i >= 0; i--) {
         if (categoryData[i].bound <= result.value) {
@@ -105,7 +112,7 @@ function findCategory(){
     result.graphic = categoryData[i].image;
     result.bound = categoryData[i].bound;
 
-    $("#result-headline").text(result.multiplier + "x " + result.name);
+    // $("#result-headline").text(result.multiplier + "x " + result.name);
 }
 
 // Old code of how I wasted hours trying to use grid-layout for displaying multiple images
@@ -115,7 +122,7 @@ function findCategory(){
 //     for ( var i = 0; i < result.multiplier; i++){
 //         imageCode = imageCode + '<div class="result-image-flex"><img src="' + result.graphic + '" /></div>'; //width="100px"
 //     }
-    
+
 //     console.log(imageCode);
 //     $(".result-image").html(imageCode);
 // }
@@ -141,7 +148,7 @@ function draw(){
     var newHeight;
     var newWidth;
     var img = new Image();
-    img.onload = function() {   
+    img.onload = function() {
         var originalHeight = img.height;
         var originalWidth = img.width;
         var aspectRatio = originalWidth / originalHeight;
@@ -149,7 +156,7 @@ function draw(){
         newHeight = originalHeight;
         newWidth = originalWidth;
 
-        while ( (newHeight * colImages > imageHeigth) || 
+        while ( (newHeight * colImages > imageHeigth) ||
                 (newWidth * rowImages > imageWidth) ) {
             newHeight = newHeight - 5;
             newWidth = newHeight * aspectRatio;
@@ -158,7 +165,7 @@ function draw(){
         var centerSpace = (imageWidth - rowImages*newWidth) / 2;
         var centerHeight = (imageHeigth - colImages*newHeight) / 2;
         var isDraw = true;
-        
+
         for (var i = 0; i < colImages; i++) {
             for (var j = 0; j < rowImages; j++) {
                 if (i+1 == colImages){
@@ -173,71 +180,103 @@ function draw(){
     img.src = categoryData[result.categoryElement].image;
     console.log(img.src);
     // $('#result-canvas').height = colImages*newHeight; //does not work !!!!! why
-    // $('#result-canvas').height(colImages * newHeight); 
+    // $('#result-canvas').height(colImages * newHeight);
 }
 
 
 function pluralS(){
     var s="";
     if (result.multiplier > 1) {
-        s = "s"};
+        if( (result.name.charAt(result.name.length - 1) != "s") &&
+            (result.name != "cherry tomato") ) {
+            console.log("pluralS: add an s");
+            s = "s"
+        } else {
+            console.log("pluralS: add es");
+            s = "es";
+        }
+    }
     return s;
 }
 
+function addCommas(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
 function createText(){
-    var categoryVerb = "contains";
-    // var pluralS = "";
-    // if (result.multiplier > 1) {pluralS = "s"};
+    //add commas to numbers
+    var textMultiplier = addCommas(result.multiplier);
+    var textValue = addCommas(result.value);
+    var textUnit = addCommas(result.unit);
 
+    //create headline
+    $("#result-headline").text(textMultiplier + "x " + result.name + pluralS());
+
+    //create text
     var explanation;
-    explanation = result.value + " " + result.unit + " equals the amount" + 
-                 " of roughly " + result.multiplier + " " + result.name + pluralS() + ".";
+    explanation = textValue + " " + textUnit + " equals the amount" +
+                 " of roughly " + result.multiplier + " " + result.name + pluralS() + ". ";
 
-    explanation += " One " + result.name + " " + categoryVerb + " around " + result.bound + " " 
-                 + result.unit + ". \r \n ";
+    explanation += " One " + result.name + " " + result.verb + " around " + result.bound + " "
+                 + textUnit + ". \r \n ";
 
     $('#result-text').text(explanation);
 
-    //change background color
-    $(".result-content").css("background-color" , "lightseagreen");
+    // set text color
     $(".result-content").css({"color" : "white"});
+
+    //change id in order to change the background color
+    $(".result-content").attr('id', '' + result.measure + '');
 }
 
 function addIcon(){
 
-    // remove object if on exists
-    if ($('#symbol').length == 0) {
-        var object = '<object id="symbol" data="icons/' + result.measure + '.svg" width="20" height="20" stroke="white"></object>';
-        $(".result-content").append(object);
+    // remove icon if one exists
+    if ($('#symbol').length != 0) {
+        $('#symbol').remove();
     }
 
-    // change color of the symbol to white
-    // var svg = document.getElementById("symbol");
-    // var svgDoc = svg.contentDocument;
-    // var path = svgDoc.getElementById("sym"); // the path of every icon svg needs to have this id
-    // if (path.length != 0) { console.log("whaaaaaaaaaaaaaaaaaaat"); }
-    // path.setAttributeNS(null, "stroke", "white");
+    // add new icon
+    var object = '<object id="symbol" type="image/svg+xml" data="icons/' + result.measure + '.svg" width="40" height="40" fill="white"></object>';
+    $(".result-content").append(object);
+
+
+    // change color of the symbol
+    // I don't know how so I changed the color of the svg itself `-_o_-´
+
 }
 
 
 function getResults(){
-    
+
     // hide the keyboard on mobile devices
     // window.hideVirtualKeyboard();   //does not work as planned
     setTimeout(_ => {
         window.hideVirtualKeyboard()
       }, 250);
-    
+
     // create div-structure
-    if ($('.result-content').length == 0) {
-        $("main").append('<div class="result-content">');
-        $(".result-content").append('<div class="result-image"></div>');
-        $(".result-content").append('<h3 id="result-headline"></h3>');
-        $(".result-content").append('<p id="result-text"></p></div>');
+    if ($('.result-content').length != 0) {
+        $(".result-content").fadeOut();
+        $(".result-content").remove();
     }
 
+    $("main").append('<div class="result-content" style="display: none;">');
+    $(".result-content").fadeIn("slow");
+    $(".result-content").append('<div class="result-image"></div>');
+    $(".result-content").append('<h3 id="result-headline"></h3>');
+    $(".result-content").append('<p id="result-text"></p></div>');
+
     $("#result-text").focus();
-        
+
     // $('.result-content').focus();
 
     console.log("--get results--");
@@ -271,7 +310,6 @@ function setListeners(){
         }
 
         var unit = getUnit(category);
-9
         $("#input-field").val(currentInput + " " + unit);
         $("#input-field").focus();
         $("#input-field").get(0).setSelectionRange(0,0);
@@ -282,7 +320,7 @@ function setListeners(){
 
 function getUnit(category){
     console.log(category);
-    
+
     switch (category) {
         case "calories":
             return "kcal";
@@ -299,7 +337,7 @@ function getUnit(category){
         case "speed":
             return "km/h";
             break;
-        case "scale":
+        case "weight":
             return "kg";
             break;
         case "duration":

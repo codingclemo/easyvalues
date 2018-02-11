@@ -102,19 +102,19 @@ var myData = {
         },
         {
             "unit": "min",
-            "name": "episode of the Simpsons",
+            "name": "Simpsons episode",
             "bound": 20,
             "image": "img/duration/simpsons.jpg"
         },
         {
             "unit": "min",
-            "name": "one season of Game of Thrones",
+            "name": "Game of Thrones season",
             "bound": 500,
             "image": "img/duration/gameOfThrones.jpg"
         },
         {
             "unit": "min",
-            "name": "entire series of Breaking Bad",
+            "name": "Breaking Bad entire series",
             "bound": 3030,
             "image": "img/duration/breakingBad.jpg"
         }
