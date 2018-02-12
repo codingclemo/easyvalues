@@ -50,7 +50,7 @@ function userLocation(){
 function setTargetLocation(start, distance){
 
     var startPoint = new google.maps.LatLng(start.lat, start.lng);
-    var heading = 90;
+    var heading = 100;
     var endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
 
 
