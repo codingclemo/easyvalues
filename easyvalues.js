@@ -57,8 +57,9 @@ function getMeasure(){
             categoryData = myData.calories;
             break;
         case "people":
-            console.log("crowd");
-            result.measure = "people"
+            console.log("people");
+            result.measure = "people";
+            result.verb = "fits";
             categoryData = myData.people;
             break;
         case "km":
@@ -226,6 +227,7 @@ function createText(){
     var textMultiplier = addCommas(result.multiplier);
     var textValue = addCommas(result.value);
     var textUnit = addCommas(result.unit);
+    var textBound = addCommas(result.bound);
 
     //create headline
     if(result.measure != "distance")
@@ -239,7 +241,7 @@ function createText(){
     } else {
         explanation = textValue + " " + textUnit + " equals the amount" +
                      " of roughly " + result.multiplier + " " + result.name + pluralS() + ". ";
-        explanation += " One " + result.name + " " + result.verb + " around " + result.bound + " "
+        explanation += " One " + result.name + " " + result.verb + " around " + textBound + " "
                     + textUnit + ". \r \n ";
     }
 
@@ -341,7 +343,7 @@ function getUnit(category){
         case "calories":
             return "kcal";
             break;
-        case "crowd":
+        case "people":
             return "people";
             break;
         case "distance":

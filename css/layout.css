@@ -2,7 +2,7 @@
 {
     --iconColor: lightslategrey;
     --caloriesColor: lightcoral;
-    --crowdColor: lightsteelblue;
+    --peopleColor: lightsteelblue;
     --distanceColor: lightgray;
     --heightColor: lightgoldenrodyellow;
     --speedColor: lightsalmon;
@@ -62,9 +62,9 @@ img
 {
     background-color: var(--caloriesColor);
 }
-#crowd
+#people
 {
-    background-color: var(--crowdColor);
+    background-color: var(--peopleColor);
 }
 #distance
 {
@@ -195,9 +195,9 @@ form
     background-color: var(--caloriesColor);
 }
 
-#icon-crowd:hover
+#icon-people:hover
 {
-    background-color: var(--crowdColor);
+    background-color: var(--peopleColor);
 }
 
 #icon-distance:hover

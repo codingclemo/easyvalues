@@ -39,7 +39,44 @@ var myData = {
             "image": "img/calories/lasagna.jpg"
         }
     ],
-
+    "people": [
+        {
+            "unit": "people",
+            "name": "person",
+            "bound": 1,
+            "image": "img/people/person.jpeg"
+        },
+        {
+            "unit": "people",
+            "name": "meeting room",
+            "bound": 6,
+            "image": "img/people/meeting.jpg"
+        },
+        {
+            "unit": "people",
+            "name": "class room",
+            "bound": 26,
+            "image": "img/people/classroom.png"
+        },
+        {
+            "unit": "people",
+            "name": "pub",
+            "bound": 100,
+            "image": "img/people/pub.jpg"
+        },
+        {
+            "unit": "people",
+            "name": "concert hall",
+            "bound": 1500,
+            "image": "img/people/concerthall.png"
+        },
+        {
+            "unit": "people",
+            "name": "soccer stadion",
+            "bound": 28000,
+            "image": "img/people/soccerstadion.jpg"
+        },
+    ],
     "weight": [
         {
             "unit": "kg",

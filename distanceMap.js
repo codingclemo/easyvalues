@@ -1,5 +1,6 @@
 var map;
-var startLocation = {lat: 48.2205994, lng: 16.2396333}; //default is vienna
+var startLocation = {lat: 48.368265, lng: 14.513698}; //default is hgbg
+
 
 
 function initMap(userInput) {
@@ -49,7 +50,7 @@ function userLocation(){
 function setTargetLocation(start, distance){
 
     var startPoint = new google.maps.LatLng(start.lat, start.lng);
-    var heading = 45;
+    var heading = 90;
     var endPoint = google.maps.geometry.spherical.computeOffset(startPoint, distance * 1000, heading);
 
 
